@@ -1,6 +1,8 @@
-let input = "abaa";
+let input = "abba";
 
-console.log('input: ' + input, 'output: ', findPerms(input));
+console.log('input: ' + input, 'findPerms: ', findPerms(input));
+
+console.log('input: ' + input, 'findPermsSln: ', findPermsSln(input));
 
 function findPerms(str) {
     if (str == null) return null;
@@ -23,4 +25,38 @@ function findPerms(str) {
     }
 
     return result;
+}
+
+function findPermsSln(str) {
+    let result = []
+    let map = createKeyMap(str);
+    findPermsSlnHelper(map, "", str.length, result);
+    return result;
+}
+
+function  findPermsSlnHelper(map, prefix, remaining, result) {
+    if (remaining == 0) {
+        result.push(prefix);
+    }
+
+    for(const key in map) {
+        let count = map[key];
+        if (count > 0) {
+            map[key] = count -1;
+            findPermsSlnHelper(map, prefix + key, remaining - 1, result);
+            map[key] = count;
+        }
+    }
+}
+
+function createKeyMap(str) {
+    let map = {};
+    for (let x = 0; x < str.length; x++) {
+        if (!map[str[x]]) {
+            map[str[x]] = 0;
+        }
+        map[str[x]]  = map[str[x]] + 1;
+    }
+
+    return map;
 }
