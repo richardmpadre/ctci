@@ -1,9 +1,9 @@
 const coinTypes = [1, 5, 10, 25];
-let n = 25;
+let n = 100;
 let result = [];
 coins(n, 0, [], 0, result);
 
-console.log('result:', result);
+console.log('result:', result.length);
 
 function coins(n, sum, combo, minCoin, result) {
     for (let x = minCoin; x < coinTypes.length; x++){
