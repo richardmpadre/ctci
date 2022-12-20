@@ -1,12 +1,14 @@
 class Box {
-    length;
-    width;
-    height;
 
-    constructor(l, w, h) {
-        this.length = l;
-        this.width = w;
+    constructor(h, w, l) {
         this.height = h;
+        this.width = w;
+        this.length = l;
+    }
+
+    canBeAbove(b) {
+        // return b.width > this.width && b.length > this.length;
+        return b.height > this.height;
     }
 }
 
