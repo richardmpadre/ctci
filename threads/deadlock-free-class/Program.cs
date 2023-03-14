@@ -1,7 +1,5 @@
-﻿var instance = LockFactory.GetInstance();
+﻿LockFactory.Initialize(3);
+var instance = LockFactory.GetInstance();
 
-var t1 = new Thread(() => { LockFactory.Initialize(1);});
-var t2 = new Thread(() => { LockFactory.Initialize(2);});
-
-t1.Start();
-t2.Start();
+instance.Declare(1, new int[] { 0, 1 });
+instance.Declare(2, new int[] { 0 });
